@@ -9,12 +9,12 @@ from tkinter import *
 
 
 class PasswordGenerator:
-    def __init__(self, length, includeLowerCase, includeUpperCase, includeNumbers, includeSpecialChar):
+    def __init__(self, length, include_lower_case, include_upper_case, include_numbers, include_special_char):
         self.length = length
-        self.includeLowerCase = includeLowerCase
-        self.includeUpperCase = includeUpperCase
-        self.includeNumbers = includeNumbers
-        self.includeSpecialChar = includeSpecialChar
+        self.includeLowerCase = include_lower_case
+        self.includeUpperCase = include_upper_case
+        self.includeNumbers = include_numbers
+        self.includeSpecialChar = include_special_char
         self.numberSet = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ]
         self.letterSet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                           'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -23,21 +23,21 @@ class PasswordGenerator:
         self.specialCharSet = ['!', '@', '#', '$', '%', '^', '&', '*']
 
     def generate(self):
-        charSet = []
+        char_set = []
         final = []
         y = self.length
         if self.includeLowerCase:
-            charSet = charSet + self.letterSet
+            char_set = char_set + self.letterSet
         if self.includeUpperCase:
-            charSet = charSet + self.upperLetterSet
+            char_set = char_set + self.upperLetterSet
         if self.includeNumbers:
-            charSet = charSet + self.numberSet
+            char_set = char_set + self.numberSet
         if self.includeSpecialChar:
-            charSet = charSet + self.specialCharSet
+            char_set = char_set + self.specialCharSet
 
         x = 0
         while x < y:
-            final = final + [random.choice(charSet)]
+            final = final + [random.choice(char_set)]
             x += 1
         return "".join(final)
 
@@ -64,6 +64,7 @@ def build():
 def copy():
     pyperclip.copy(out.get())
 
+
 # Check boxes
 number = BooleanVar()
 lower = BooleanVar()
@@ -84,19 +85,19 @@ lowerCheckBox.grid(row=3, column=0, sticky=W)
 upperCheckBox.grid(row=4, column=0, sticky=W)
 specialCheckBox.grid(row=5, column=0, sticky=W)
 
-#Number Slider
+# Number Slider
 numberSlider = Scale(root, from_=4, to=20, orient=HORIZONTAL)
 numberSlider.grid(row=1, column=0)
 
-#Output Entry
+# Output Entry
 out = Entry(root, width=20, state=DISABLED)
 out.grid(row=0, column=0)
 
-#Generate Button
+# Generate Button
 generateButton = Button(root, text="Generate!", command=build)
 generateButton.grid(row=0, column=1)
 
-#Copy Button
+# Copy Button
 copyButton = Button(root, text="Copy to Clipboard", command=copy)
 copyButton.grid(row=1, column=1, stick=W)
 
