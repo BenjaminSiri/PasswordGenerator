@@ -11,10 +11,10 @@ from tkinter import *
 class PasswordGenerator:
     def __init__(self, length, include_lower_case, include_upper_case, include_numbers, include_special_char):
         self.length = length
-        self.includeLowerCase = include_lower_case
-        self.includeUpperCase = include_upper_case
-        self.includeNumbers = include_numbers
-        self.includeSpecialChar = include_special_char
+        self.include_lower_case = include_lower_case
+        self.include_upper_case = include_upper_case
+        self.include_numbers = include_numbers
+        self.include_special_char = include_special_char
         self.numberSet = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ]
         self.letterSet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                           'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -23,16 +23,19 @@ class PasswordGenerator:
         self.specialCharSet = ['!', '@', '#', '$', '%', '^', '&', '*']
 
     def generate(self):
+        if not self.validate():
+            return "Invalid parameters"
+
         char_set = []
         final = []
         y = self.length
-        if self.includeLowerCase:
+        if self.include_lower_case:
             char_set = char_set + self.letterSet
-        if self.includeUpperCase:
+        if self.include_upper_case:
             char_set = char_set + self.upperLetterSet
-        if self.includeNumbers:
+        if self.include_numbers:
             char_set = char_set + self.numberSet
-        if self.includeSpecialChar:
+        if self.include_special_char:
             char_set = char_set + self.specialCharSet
 
         x = 0
@@ -41,8 +44,13 @@ class PasswordGenerator:
             x += 1
         return "".join(final)
 
+    def validate(self):
+        if self.include_lower_case or self.include_upper_case or self.include_numbers or self.include_special_char:
+            return True
+        return False
 
-# Gui code below
+
+# =====Gui code below============================================================================
 
 root = Tk()
 root.title("Password generator")
