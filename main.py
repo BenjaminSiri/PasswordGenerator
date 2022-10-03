@@ -5,7 +5,7 @@ import pyperclip
 from tkinter import *
 
 
-# Solid beginner level project, had some problems with pyperclip, pip and all python packages are fucked up
+# First commit
 
 
 class PasswordGenerator:
